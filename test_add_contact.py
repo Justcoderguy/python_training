@@ -71,43 +71,43 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(group_contact.fax)
 
-    def web_and_bday_fields(self, wd, group):
+    def web_and_bday_fields(self, wd, group_contact):
         # add first email
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(group.email_one)
+        wd.find_element_by_name("email").send_keys(group_contact.email_one)
         # add second email
         wd.find_element_by_name("email2").click()
         wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys(group.email_two)
+        wd.find_element_by_name("email2").send_keys(group_contact.email_two)
         # add third email
         wd.find_element_by_name("email3").click()
         wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys(group.email_three)
+        wd.find_element_by_name("email3").send_keys(group_contact.email_three)
         # add homepage address
         wd.find_element_by_name("homepage").click()
         wd.find_element_by_name("homepage").clear()
-        wd.find_element_by_name("homepage").send_keys(group.homepage)
+        wd.find_element_by_name("homepage").send_keys(group_contact.homepage)
         # select birthday data
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(group.bday)
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(group_contact.bday)
         wd.find_element_by_name("bday").click()
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(group.bmonth)
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(group_contact.bmonth)
         wd.find_element_by_name("bmonth").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(group.byear)
+        wd.find_element_by_name("byear").send_keys(group_contact.byear)
         # select anniversary data
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(group.aday)
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(group_contact.aday)
         wd.find_element_by_name("aday").click()
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(group.amonth)
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(group_contact.amonth)
         wd.find_element_by_name("amonth").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(group.ayear)
+        wd.find_element_by_name("ayear").send_keys(group_contact.ayear)
 
     def secondary_fields(self, wd, group):
         # add second address
