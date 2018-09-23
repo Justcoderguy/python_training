@@ -109,19 +109,19 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(group_contact.ayear)
 
-    def secondary_fields(self, wd, group):
+    def secondary_fields(self, wd, group_contact):
         # add second address
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(group.address_two)
+        wd.find_element_by_name("address2").send_keys(group_contact.address_two)
         # add second phone
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(group.phone_two)
+        wd.find_element_by_name("phone2").send_keys(group_contact.phone_two)
         # add notes
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(group.notes)
+        wd.find_element_by_name("notes").send_keys(group_contact.notes)
 
     def submit_contact(self, wd):
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
