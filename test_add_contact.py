@@ -21,7 +21,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def primal_data_fields(self, wd, contact):
+    def fill_contact_fields(self, wd, contact):
         # init add contact
         wd.find_element_by_link_text("add new").click()
         # add first name
@@ -127,15 +127,15 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.primal_data_fields(wd, Contact(f_name='John', m_name='Smith', l_name='Doe', n_name='Anonymous',
-                                            title='worker', company='Microsoft', address_one='Redwood 11',
-                                            home='7777-777-777', mobile='004911234567890', work='5555-555-555',
-                                            fax='12315135', email_one='mail@domaim.com',
-                                            email_two='mail@domain.com.de', email_three='mail@subdomain.domain.com',
-                                            homepage='http:/example.com', bday='1', bmonth='January', byear='1975',
-                                            aday='12', amonth='November', ayear='2010',
-                                            address_two='Bluewaters 123', phone_two='+1234567890',
-                                            notes='Worker of the year.'))
+        self.fill_contact_fields(wd, Contact(f_name='John', m_name='Smith', l_name='Doe', n_name='Anonymous',
+                                             title='worker', company='Microsoft', address_one='Redwood 11',
+                                             home='7777-777-777', mobile='004911234567890', work='5555-555-555',
+                                             fax='12315135', email_one='mail@domaim.com',
+                                             email_two='mail@domain.com.de', email_three='mail@subdomain.domain.com',
+                                             homepage='http:/example.com', bday='1', bmonth='January', byear='1975',
+                                             aday='12', amonth='November', ayear='2010',
+                                             address_two='Bluewaters 123', phone_two='+1234567890',
+                                             notes='Worker of the year.'))
         self.submit_contact(wd)
         self.return_to_home_page(wd)
 
@@ -143,15 +143,15 @@ class TestAddContact(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.primal_data_fields(wd, Contact(f_name='', m_name='', l_name='', n_name='',
-                                            title='', company='', address_one='',
-                                            home='', mobile='', work='',
-                                            fax='', email_one='',
-                                            email_two='', email_three='',
-                                            homepage='', bday='', bmonth='-', byear='',
-                                            aday='', amonth='-', ayear='',
-                                            address_two='', phone_two='',
-                                            notes=''))
+        self.fill_contact_fields(wd, Contact(f_name='', m_name='', l_name='', n_name='',
+                                             title='', company='', address_one='',
+                                             home='', mobile='', work='',
+                                             fax='', email_one='',
+                                             email_two='', email_three='',
+                                             homepage='', bday='', bmonth='-', byear='',
+                                             aday='', amonth='-', ayear='',
+                                             address_two='', phone_two='',
+                                             notes=''))
         self.submit_contact(wd)
         self.return_to_home_page(wd)
 
