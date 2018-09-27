@@ -2,6 +2,7 @@
 import pytest
 from group import Group
 from application import Application
+__author__ = 'pzqa'
 
 
 @pytest.fixture()
