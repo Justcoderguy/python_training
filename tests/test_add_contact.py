@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from application import Application
-from contact import Contact
+from fixtures.application import Application
+from models.contact import Contact
 __author__ = 'pzqa'
 
 
