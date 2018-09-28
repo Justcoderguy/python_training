@@ -22,7 +22,7 @@ class Application:
         wd.find_element_by_id("content").click()
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
-    def open_group_page(self, ):
+    def open_group_page(self):
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
 
