@@ -61,7 +61,6 @@ class GroupHelper:
         wd.find_element_by_name("edit").click()
         self.fill_group_form(new_group_data)
         wd.find_element_by_name("update").click()
-
         self.return_to_groups_page()
 
     def delete_first(self):

@@ -2,9 +2,10 @@ _author_ = 'pzqa'
 
 
 class Contact:
-    def __init__(self, f_name, m_name, l_name, n_name, title, company, address_one, home, mobile, work, fax,
-                 email_one, email_two, email_three, homepage, bday, bmonth, byear, aday, amonth, ayear,
-                 address_two, phone_two, notes):
+    def __init__(self, f_name=None, m_name=None, l_name=None, n_name=None, title=None, company=None, address_one=None,
+                 home=None, mobile=None, work=None, fax=None, email_one=None, email_two=None, email_three=None,
+                 homepage=None, bday=None, bmonth=None, byear=None, aday=None, amonth=None, ayear=None,
+                 address_two=None, phone_two=None, notes=None):
         self.f_name = f_name
         self.m_name = m_name
         self.l_name = l_name
