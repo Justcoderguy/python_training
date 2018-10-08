@@ -47,15 +47,22 @@ class ContactHelper:
         self.fill_contact_field("email2", contact.email_two)
         self.fill_contact_field("email3", contact.email_three)
         self.fill_contact_field("homepage", contact.homepage)
-        self.fill_contact_field("bday", contact.bday)
-        self.fill_contact_field("bmonth", contact.bmonth)
+        self.select_contact_option("bday", contact.bday)
+        self.select_contact_option("bmonth", contact.bmonth)
         self.fill_contact_field("byear", contact.byear)
-        self.fill_contact_field("aday", contact.aday)
-        self.fill_contact_field("amonth", contact.amonth)
+        self.select_contact_option("aday", contact.aday)
+        self.select_contact_option("amonth", contact.amonth)
         self.fill_contact_field("ayear", contact.ayear)
         self.fill_contact_field("address2", contact.address_two)
         self.fill_contact_field("phone2", contact.phone_two)
         self.fill_contact_field("notes", contact.notes)
+
+    def select_contact_option(self, selector, option):
+        wd = self.app.wd
+        if option is not None:
+            wd.find_element_by_name(selector).click()
+            Select(wd.find_element_by_name(selector)).select_by_visible_text(option)
+            wd.find_element_by_name(selector).click()
 
     def fill_contact_field(self, field_name, text):
         wd = self.app.wd
