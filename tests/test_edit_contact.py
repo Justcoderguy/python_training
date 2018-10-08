@@ -3,6 +3,9 @@ __author__ = 'pzqa'
 
 
 def test_edit_contact(app):
+    if app.contact.count() == 0:
+        app.contact.add_new(Contact(m_name="Marvin"))
+        app.open_home_page()
     app.contact.edit(Contact(f_name='Janna', m_name='Johanna', l_name='Johnson', n_name='nonickname',
                              title='student', company='Apple', address_one='Greenfields 15-A',
                              home='9999-888-666', mobile='+4943587901234', work='1111-111-111',
