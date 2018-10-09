@@ -13,10 +13,16 @@ class ContactHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         self.submit_contact()
+        self.return_to_home_page()
 
     def submit_contact(self):
         wd = self.app.wd
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+
+    def return_to_home_page(self):
+        wd = self.app.wd
+        if not len(wd.find_elements_by_xpath("//input[@type='Send e-Mail']")) > 0:
+            wd.find_element_by_link_text("home").click()
 
     def start_edit(self):
         wd = self.app.wd
@@ -30,6 +36,7 @@ class ContactHelper:
     def end_edit(self):
         wd = self.app.wd
         wd.find_element_by_name("update").click()
+        self.return_to_home_page()
 
     def fill_contact_form(self, contact):
         self.fill_contact_field("firstname", contact.f_name)
