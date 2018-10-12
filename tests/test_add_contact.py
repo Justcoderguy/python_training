@@ -4,6 +4,7 @@ __author__ = 'pzqa'
 
 
 def test_add_contact(app):
+    old_contacts = app.contact.get_contact_list()
     app.contact.add_new(Contact(f_name='John', m_name='Smith', l_name='Doe', n_name='Anonymous',
                                 title='worker', company='Microsoft', address_one='Redwood 11',
                                 home='7777-777-777', mobile='004911234567890', work='5555-555-555',
@@ -13,9 +14,12 @@ def test_add_contact(app):
                                 aday='12', amonth='November', ayear='2010',
                                 address_two='Bluewaters 123', phone_two='+1234567890',
                                 notes='Worker of the year.'))
+    new_contacts = app.contact.get_contact_list()
+    assert len(old_contacts) + 1 == len(new_contacts)
 
 
 def test_add_empty_contact(app):
+    old_contacts = app.contact.get_contact_list()
     app.contact.add_new(Contact(f_name='', m_name='', l_name='', n_name='',
                                 title='', company='', address_one='',
                                 home='', mobile='', work='',
@@ -25,3 +29,5 @@ def test_add_empty_contact(app):
                                 aday='', amonth='-', ayear='',
                                 address_two='', phone_two='',
                                 notes=''))
+    new_contacts = app.contact.get_contact_list()
+    assert len(old_contacts) + 1 == len(new_contacts)

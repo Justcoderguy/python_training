@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import Select
+from models.contact import Contact
 __author__ = 'pzqa'
 
 
@@ -93,7 +94,17 @@ class ContactHelper:
         self.select_first_contact()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        self.return_to_home_page()
 
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        contacts = []
+        for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+            text = element.find_element_by_xpath("//td[2]").text
+            id = element.find_element_by_name("selected[]").get_attribute("id")
+            contacts.append(Contact(f_name=text, id=id))
+        return contacts
