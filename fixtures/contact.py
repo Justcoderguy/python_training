@@ -10,7 +10,6 @@ class ContactHelper:
 
     def add_new(self, contact):
         wd = self.app.wd
-        # init add contact
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         self.submit_contact()
@@ -104,7 +103,7 @@ class ContactHelper:
         wd = self.app.wd
         contacts = []
         for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
-            text = element.find_element_by_xpath("//td[2]").text
+            text = element.find_element_by_xpath("//td[1]").text
             id = element.find_element_by_name("selected[]").get_attribute("id")
             contacts.append(Contact(f_name=text, id=id))
         return contacts
