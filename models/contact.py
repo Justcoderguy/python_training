@@ -34,7 +34,7 @@ class Contact:
         self.notes = notes
 
     def __repr__(self):
-        return "%s:%s" % (self.f_name, self.id)
+        return "%s:%s" % (self.id, self.f_name)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) and self.f_name == other.f_name
