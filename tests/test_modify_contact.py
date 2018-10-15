@@ -17,6 +17,6 @@ def test_modify_m_name(app):
         app.contact.add_new(Contact(m_name="Marvin"))
         app.open_home_page()
     old_contacts = app.contact.get_contact_list()
-    app.contact.modify_first_contact(Contact(m_name="Joseph"))
+    app.contact.modify_first_contact(Contact(m_name="Smith"))
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)

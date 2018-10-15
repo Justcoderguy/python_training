@@ -3,10 +3,10 @@ _author_ = 'pzqa'
 
 
 class Contact:
-    def __init__(self, id=None, f_name=None, m_name=None, l_name=None, n_name=None, title=None, company=None, address_one=None,
-                 home=None, mobile=None, work=None, fax=None, email_one=None, email_two=None, email_three=None,
-                 homepage=None, bday=None, bmonth=None, byear=None, aday=None, amonth=None, ayear=None,
-                 address_two=None, phone_two=None, notes=None):
+    def __init__(self, id=None, f_name=None, m_name=None, l_name=None, n_name=None, title=None, company=None,
+                 address_one=None, home=None, mobile=None, work=None, fax=None, email_one=None, email_two=None,
+                 email_three=None, homepage=None, bday=None, bmonth=None, byear=None, aday=None, amonth=None,
+                 ayear=None, address_two=None, phone_two=None, notes=None):
         self.id = id
         self.f_name = f_name
         self.m_name = m_name
@@ -34,10 +34,11 @@ class Contact:
         self.notes = notes
 
     def __repr__(self):
-        return "%s:%s" % (self.id, self.f_name)
+        return "%s:%s:%s" % (self.id, self.f_name, self.l_name)
 
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and self.f_name == other.f_name
+        return (self.id is None or other.id is None or self.id == other.id) and self.f_name == other.f_name \
+               and self.l_name == other.l_name
 
     def id_or_max(self):
         if self.id:
