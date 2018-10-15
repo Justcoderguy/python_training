@@ -25,12 +25,12 @@ class ContactHelper:
         if not len(wd.find_elements_by_xpath("//input[@type='Send e-Mail']")) > 0:
             wd.find_element_by_link_text("home").click()
 
-    def start_edit(self):
+    def start_edit(self, index):
         wd = self.app.wd
-        wd.find_element_by_css_selector("img[alt='Edit']").click()
+        wd.find_elements_by_css_selector("img[alt='Edit']")[index].click()
 
-    def edit(self, contact):
-        self.start_edit()
+    def edit(self, index, contact):
+        self.start_edit(index)
         self.fill_contact_form(contact)
         self.end_edit()
 
@@ -80,19 +80,27 @@ class ContactHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def modify_first_contact(self, contact):
-        self.select_first_contact()
-        self.start_edit()
+        self.modify_contact_by_index(0, contact)
+
+    def modify_contact_by_index(self, index, contact):
+        self.start_edit(index)
         self.fill_contact_form(contact)
         self.end_edit()
         self.contact_cache = None
 
     def select_first_contact(self):
+        self.select_contact_by_index(0)
+
+    def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def delete_first(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_home_page()
