@@ -28,6 +28,7 @@ class ContactHelper:
 
     def start_edit(self, index):
         wd = self.app.wd
+        self.return_to_home_page()
         wd.find_elements_by_css_selector("img[alt='Edit']")[index].click()
 
     def edit(self, index, contact):
@@ -142,7 +143,7 @@ class ContactHelper:
 
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
-        row = wd.find_elements_by_xpath("//tr[@name='entry']")[index]
+        row = wd.find_elements_by_name("entry")[index]
         cell = row.find_elements_by_tag_name("td")[6]
         cell.find_element_by_tag_name("a").click()
 
