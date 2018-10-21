@@ -29,7 +29,9 @@ class ContactHelper:
     def start_edit(self, index):
         wd = self.app.wd
         self.return_to_home_page()
-        wd.find_elements_by_css_selector("img[alt='Edit']")[index].click()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
 
     def edit(self, index, contact):
         self.start_edit(index)
@@ -118,6 +120,7 @@ class ContactHelper:
         if self.contact_cache is None:
             wd = self.app.wd
             self.contact_cache = []
+            self.return_to_home_page()
             for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
                 cells = element.find_elements_by_tag_name("td")
                 f_text = cells[1].text
@@ -138,7 +141,7 @@ class ContactHelper:
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         phone_two = wd.find_element_by_name("phone2").get_attribute("value")
         return Contact(f_name=firstname, l_name=lastname, id=id, home=home,
-                       work=work, mobile=mobile, phone_two=phone_two)
+                       mobile=mobile, work=work, phone_two=phone_two)
 
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
