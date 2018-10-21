@@ -18,7 +18,7 @@ test_contact = [Contact(f_name=f_name, m_name=m_name, l_name=l_name, n_name=n_na
                         email_two='someser@somedomain.de', email_three='anyuser@anydomain.net',
                         homepage='www.example.com', bday='1', bmonth='January', byear='1975',
                         aday='12', amonth='November', ayear='2010',
-                        address_two='user@mail.org', phone_two='4426313451235',
+                        address_two=address_two, phone_two='4426313451235',
                         notes=notes)
                 for f_name in ["", random_string("f_name", 10)]
                 for m_name in ["", random_string("m_name", 10)]
@@ -28,6 +28,7 @@ test_contact = [Contact(f_name=f_name, m_name=m_name, l_name=l_name, n_name=n_na
                 for company in ["", random_string("company", 10)]
                 for address_one in ["", random_string("address_one", 10)]
                 for notes in ["", random_string("notes", 10)]
+                for address_two in ["", random_string("address_two", 10)]
                 ]
 
 
