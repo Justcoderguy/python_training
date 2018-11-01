@@ -1,8 +1,6 @@
 from models.group import Group
 import random
 import string
-import json
-import os.path
 
 __author__ = 'pzqa'
 
