@@ -1,5 +1,6 @@
 import re
 from random import randrange
+from models.contact import Contact
 __author__ = 'pzqa'
 
 
@@ -13,6 +14,16 @@ def test_data_on_home_page_correspond_edit_page(app):
     assert contact_from_home_page.address_one == contact_from_edit_page.address_one
     assert contact_from_home_page.all_home_page_phones == merge_phones_like_on_home_page(contact_from_edit_page)
     assert contact_from_home_page.all_home_page_emails == merge_emails_like_on_home_page(contact_from_edit_page)
+
+
+def test_data_on_home_page_correspond_db(app, db):
+    app.contact.open_home_page()
+    contacts_from_home_page = list((app.contact.get_contact_list()[contact] for contact in range(app.contact.count())))
+    contacts_from_db = db.get_contact_list()
+    assert sorted(contacts_from_home_page, key=Contact.id_or_max) == sorted(contacts_from_db, key=Contact.id_or_max)
+    for contact in range(len(contacts_from_home_page)):
+        assert sorted(contacts_from_home_page[contact].all_home_page_emails, key=Contact.id_or_max) == \
+               sorted(merge_emails_like_on_home_page(contacts_from_db[contact]), key=Contact.id_or_max)
 
 
 def test_phones_on_view_page(app):
@@ -40,7 +51,7 @@ def merge_phones_like_on_home_page(contact):
 
 
 def merge_emails_like_on_home_page(contact):
-    return "\n".join(filter(lambda x: x != "",
-                            map(lambda x: email_reg_ex(x),
-                                filter(lambda x: x is not None,
-                                       [contact.email_one, contact.email_two, contact.email_three]))))
+    return contact.id + "\n".join(filter(lambda x: x != "",
+                                         map(lambda x: email_reg_ex(x),
+                                             filter(lambda x: x is not None,
+                                                    [contact.email_one, contact.email_two, contact.email_three]))))

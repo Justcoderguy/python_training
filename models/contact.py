@@ -37,12 +37,14 @@ class Contact:
         self.all_home_page_emails = all_home_page_emails
 
     def __repr__(self):
-        return "%s:%s:%s" % (self.id, self.f_name, self.l_name)
+        return "%s;%s;%s;%s;%s;%s" % (self.id, self.f_name, self.l_name,
+                                      self.address_one, self.email_one, self.home)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) \
                and (self.f_name is None or self.f_name == other.f_name) \
-               and (self.l_name is None or self.l_name == other.l_name)
+               and (self.l_name is None or self.l_name == other.l_name) \
+
 
     def id_or_max(self):
         if self.id:
