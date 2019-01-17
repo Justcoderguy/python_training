@@ -45,7 +45,6 @@ class Contact:
                and (self.f_name is None or self.f_name == other.f_name) \
                and (self.l_name is None or self.l_name == other.l_name) \
 
-
     def id_or_max(self):
         if self.id:
             return int(self.id)
