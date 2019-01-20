@@ -21,8 +21,8 @@ def test_data_on_home_page_correspond_db(app, db):
     contacts_from_home_page = list((app.contact.get_contact_list()[contact] for contact in range(app.contact.count())))
     contacts_from_db = db.get_contact_list()
     for contact in range(len(contacts_from_db)):
-        contacts_from_db[contact].all_home_page_emails = merge_emails_like_on_home_page(contacts_from_home_page[contact])
-        contacts_from_db[contact].all_home_page_phones = merge_phones_like_on_home_page(contacts_from_home_page[contact])
+        contacts_from_db[contact].all_home_page_emails = merge_emails_like_on_home_page(contacts_from_db[contact])
+        contacts_from_db[contact].all_home_page_phones = merge_phones_like_on_home_page(contacts_from_db[contact])
     assert sorted(contacts_from_home_page, key=Contact.id_or_max) == sorted(contacts_from_db, key=Contact.id_or_max)
 
 
