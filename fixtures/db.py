@@ -48,7 +48,25 @@ class DbFixture:
         try:
             cursor.execute("SELECT id, group_id "
                            "FROM address_in_groups "
-                           "WHERE deprecated='0000-00-00 00:00:00'")
+                           "WHERE deprecated='0000-00-00 00:00:00' ")
+            for row in cursor:
+                (id, group_id) = row
+                l.append(Contact(id=str(id), group_id=str(group_id)))
+        finally:
+            cursor.close()
+        return l
+
+    def destroy(self):
+        self.connection.close()
+
+    def get_contact_group(self, group):
+        l = []
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute("SELECT id, group_id "
+                           "FROM address_in_groups "
+                           "WHERE deprecated='0000-00-00 00:00:00' "
+                           "AND group_id=%s" % group)
             for row in cursor:
                 (id, group_id) = row
                 l.append(Contact(id=str(id), group_id=str(group_id)))

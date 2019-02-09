@@ -4,7 +4,7 @@ from random import randrange
 _author_ = 'pzqa'
 
 
-def test_add_contact_to_group(app, db):
+def test_add_contact_to_group(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.add_new(Contact())
     if len(db.get_group_list()) == 0:
@@ -19,3 +19,9 @@ def test_add_contact_to_group(app, db):
     old_contact_group.append(Contact(id=contact_id, group_id=group_id))
     new_contact_group = db.get_contact_group_list()
     assert sorted(old_contact_group, key=Contact.id_or_max) == sorted(new_contact_group, key=Contact.id_or_max)
+    if check_ui:
+        ui_list = app.contact.get_contacts_in_group_ui_list(group_id)
+        new_contact_group = db.get_contact_group(group_id)
+        assert sorted(ui_list, key=Contact.id_or_max) == sorted(new_contact_group, key=Contact.id_or_max)
+
+
