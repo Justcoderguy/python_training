@@ -112,9 +112,9 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def select_contact_by_id(self, id):
+    def select_contact_by_id(self, contact_id):
         wd = self.app.wd
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_css_selector("input[value='%s']" % contact_id).click()
 
     def delete_first(self):
         self.delete_contact_by_index(0)
@@ -191,3 +191,16 @@ class ContactHelper:
         mobile = re.search("M: (.*)", text).group(1)
         phone_two = re.search("P: (.*)", text).group(1)
         return Contact(home=home, work=work, mobile=mobile, phone_two=phone_two)
+
+    def add_contact_to_group_by_id(self, contact_id, group_id):
+        self.open_home_page()
+        self.select_contact_by_id(contact_id)
+        self.select_group_to_add_to(group_id)
+
+    def select_group_to_add_to(self, group_id):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//select[@name='to_group']").click()
+        Select(wd.find_element_by_xpath("//select[@name='to_group']")).select_by_value(group_id)
+        wd.find_element_by_xpath("//input[@name='add']").click()
+        wd.find_element_by_xpath("//a[contains(text(), 'group page')]").click()
+
