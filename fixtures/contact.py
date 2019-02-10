@@ -206,15 +206,24 @@ class ContactHelper:
 
     def get_contacts_in_group_ui_list(self, group_id):
         wd = self.app.wd
-        if self.contact_cache is None:
-            self.contact_cache = []
-        if wd.current_url != ("http://localhost/addressbook/?group=%s" % group_id):
-            wd.get("http://localhost/addressbook/?group=%s" % group_id)
+        self.open_contacts_in_group(group_id)
         for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
             cells = element.find_elements_by_tag_name("td")
             id = cells[0].find_element_by_name("selected[]").get_attribute("id")
             self.contact_cache.append(Contact(id=id))
         return list(self.contact_cache)
 
+    def open_contacts_in_group(self, group_id):
+        wd = self.app.wd
+        if self.contact_cache is None:
+            self.contact_cache = []
+        if wd.current_url != ("http://localhost/addressbook/?group=%s" % group_id):
+            wd.get("http://localhost/addressbook/?group=%s" % group_id)
 
+    def del_contact_from_group_by_id(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_contacts_in_group(group_id)
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_xpath("//input[@name='remove']").click()
+        wd.find_element_by_xpath("//a[contains(text(), 'group page')]").click()
 
